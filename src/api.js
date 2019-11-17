@@ -1,6 +1,43 @@
-module.exports = {
-  getMovies: () => {
-    return fetch('/api/movies')
-      .then(response => response.json());
-  }
-};
+import $ from 'jquery'
+
+
+
+    //! GET MOVIES
+   export const getMovies = () => {
+        let cardWrapper = $('#card-wrapper')
+        let before = $('#before-loading')
+        let after = $('#after-loading')
+        cardWrapper.html('')
+        before.css('display', 'inline')
+        after.css('display', 'none')
+        return fetch('/api/movies')
+            .then(response => response.json())
+            .then(data => {
+                before.css('display', 'none')
+                after.css('display', 'inline')
+                return data
+            })
+            .catch(()=> console.log(`GET ERROR`))
+    }
+    
+    //! POST MOVIES
+   export const postMovie = (obj, num) => {
+        const {title, rating} = obj
+        if(!title || !rating) return alert(`Title and Rating are required`)
+        let newMovie = {
+            id: ++num,
+           title,
+           rating
+         }
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newMovie)
+        }
+        return fetch('api/movies', options)
+    }
+    
+
+

@@ -1,17 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="">
 <head>
-    <meta charset="UTF-8" />
-    <title>My Application</title>
-    <link rel="stylesheet" href="/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Movie Project</title>
 </head>
 <body>
+<div id="before-loading">
+    <img src="./img/loading.gif" alt="loading">
+</div>
 
-    <div class="container">
-        <h1>Hello There!</h1>
-        <p>To get started, edit <code>src/index.js</code>.</p>
+<div id="after-loading" >
+<h1>after</h1>
+    <div id="card-wrapper"></div>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="e.g The Little Mermaid" id="title" type="text" class="validate" required>
+                    <label for="title">Title</label>
+                </div>
+                <div class="input-field col s12">
+                        <select name="rating" id="rating" required>
+                            <option value="" disabled selected>Please rate your movie!</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    <label>Rating</label>
+                </div>
+                <button class="btn waves-effect waves-light" id="submit">Submit</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script src="./main.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+<script src="./main.js"></script>
 </body>
 </html>
