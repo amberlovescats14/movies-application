@@ -20,6 +20,7 @@
 <div id="after-loading" >
 <h1>after</h1>
     <div id="card-wrapper"></div>
+    <div id="modal1" class="modal"></div>
     <div class="row">
         <form class="col s12">
             <div class="row">
@@ -43,12 +44,31 @@
         </form>
     </div>
 </div>
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal17">Modal</a>
 
+<!-- Modal Structure -->
+<div id="modal17" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
 
 <script>
+    //! SELECT
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
+    });
+    
+    //! MODAL
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
     });
 </script>
 <script src="./main.js"></script>

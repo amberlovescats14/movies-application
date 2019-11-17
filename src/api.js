@@ -5,9 +5,11 @@ import $ from 'jquery'
     //! GET MOVIES
    export const getMovies = () => {
         let cardWrapper = $('#card-wrapper')
+        let modalWrapper = $('#modal-wrapper')
         let before = $('#before-loading')
         let after = $('#after-loading')
         cardWrapper.html('')
+        modalWrapper.html('')
         before.css('display', 'inline')
         after.css('display', 'none')
         return fetch('/api/movies')
@@ -37,6 +39,17 @@ import $ from 'jquery'
             body: JSON.stringify(newMovie)
         }
         return fetch('api/movies', options)
+    }
+    
+    export const editMovie = (obj, id) => {
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(obj)
+        }
+        return fetch(`api/movies/${id}`, options)
     }
     
 
