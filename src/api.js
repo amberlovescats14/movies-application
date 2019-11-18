@@ -42,6 +42,9 @@ import $ from 'jquery'
     }
     
     export const editMovie = (obj, id) => {
+        const {title, rating} = obj
+        if(!title || !rating) return alert(`Title and Rating are required`)
+        
         const options = {
             method: 'PUT',
             headers: {

@@ -1,9 +1,9 @@
 {
   "movies": [
     {
+      "id": 1,
       "title": "Casablanca",
-      "rating": "4",
-      "id": 1
+      "rating": "5"
     },
     {
       "title": "Star Wars: A New Hope",

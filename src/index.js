@@ -17,8 +17,14 @@ const fetch = () => {
       let html =
           `<div class="card pink lighten-1 white-text">
             <div class="card-body">
-            <div class="card-title">${title}, ${rating} Star Rating</div>
-            <div class="card-action" ">
+            <div class="card-title center">${title}</div>
+            <p class="center">
+             < ${rating}
+             <i class="material-icons">star_border</i>
+             Rating >
+            </p>
+
+            <div class="card-action center" >
   <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="${id}">Edit</a>
             </div>
             </div>
@@ -57,42 +63,38 @@ fetch()
         console.log("arr, ", arr)
         arr.forEach((a,i)=> {
            if(Number(e.target.id) === Number(a.id)) {
-             let modalDiv = $('#modal1').html('')
-             //! MODAL FORM
-             let modalForm =
-                 `
-                     <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="title" type="text" class="validate"
-                    value="${a.title}" required>
-                </div>
-                <div class="input-field col s12">
-                        <select name="rating" id="rating" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    <label>Rating</label>
-                </div>
-                <button class="btn waves-effect waves-light" id="editSumbit">Update</button>
-            </div>
-        </form>
-    </div>
-                 `
-             //! END MODAL FORM
-             $('#modal1').append(modalForm)
-             console.log(`the oonoe: `, a)
-             // here
+             console.log("E: ", $('#updateTitle'))
+            $('#updateTitle').val(a.title)
+             $('#updateSubmit').data('myval', a.id)
            }
         })
       })
     }
   }
 
+  //z: handleUpdate
+  let updateButton = $('#updateSubmit')
+  updateButton.click(function (e) {
+    let id = $('#updateSubmit').data('myval')
+    let updatedMove = {
+      id,
+      title: $('#updateTitle').val(),
+      rating: $('#updateRating').val()
+    }
+    editMovie(updatedMove, id)
+        .then(()=> fetch())
+        .catch(()=> console.log(`EDIT ERROR`))
+    instance.close()
+  })
+  
+  
+  //! DELETE
+  
+  
+  
+  
+  
+  
   
 })
 
