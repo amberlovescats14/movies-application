@@ -14,17 +14,34 @@
     <link rel="stylesheet" href="./style.css">
     <title>Movie Project</title>
 </head>
-<body>
+<body style="background: #2C211E">
+
 <div id="before-loading">
     <div id="loading-div"></div>
-<!--    <img src="./img/loading.gif" alt="loading">-->
 </div>
-
-<div id="after-loading" class="pink lighten-4">
-<h1 class="center pink lighten-4" id="heading">Amber's Movies</h1>
+<!--after loading-->
+<div id="after-loading">
+    <nav class="pink lighten-4">
+        <div class="nav-wrapper">
+            <h1 id="heading" class="center">Amber's Movies</h1>
+        </div>
+    </nav>
+<!--    <nav>-->
+<!--        <div class="nav-wrapper pink lighten-4">-->
+<!--            <form>-->
+<!--                <div class="input-field">-->
+<!--                    <input id="search" type="search" required>-->
+<!--                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>-->
+<!--                    <i class="material-icons">close</i>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </nav>-->
+    <!--end nav-->
     <!--    POST FORM-->
     <div class="row" id="form-container">
-        <form class="col s12 m6" style="margin: auto">
+        <form class="col s12 m7 white"
+              style="margin: auto; margin: 20px">
             <div class="row">
                 <div class="input-field col s12">
                     <input placeholder="e.g The Little Mermaid" id="title" type="text" class="validate" required>
@@ -46,8 +63,25 @@
         </form>
     </div>
     <!--    POST FORM-->
-
-    <div id="card-wrapper"></div>
+    <div class="row">
+    <div id="card-wrapper" class="col s6"></div>
+    <div id="db-wrapperr" class="col s6">
+    
+        <nav>
+            <div class="nav-wrapper">
+                <form id="dbSearch">
+                    <div class="input-field">
+                        <input id="dbInput" type="search" required>
+                        <label class="label-icon" for="search" id="dbSubmit"><i class="material-icons" >search</i></label>
+                        <i class="material-icons" >close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <div id="db-card-wrapper"></div>
+    </div>
+    
+    </div>
 
 <!--    update modal-->
     <div id="modal1" class="modal">
@@ -79,7 +113,34 @@
         </div>
 <!--    end-->
 
-
+<!--    MODAL TWO -->
+    <div id="modal2" class="modal">
+        <div class="modal-body">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="inputDB" type="text" class="validate"
+                                   required>
+                            <!--                        <label for="updateTitle">Title</label>-->
+                        </div>
+                        <div class="input-field col s12">
+                            <select name="rating" id="selectDB" required>
+                                <option value="" disabled selected>Please rate your movie!</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>Rating</label>
+                        </div>
+                        <button class="btn waves-effect waves-light" id="submitDB" data-myval2="">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <script>
     //! SELECT
     document.addEventListener('DOMContentLoaded', function() {

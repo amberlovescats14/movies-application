@@ -2,11 +2,13 @@ import $ from 'jquery'
 import sayHello from './hello';
 sayHello('World');
 import {getMovies, postMovie, editMovie, deleteMovie} from "./api"
+import {getSearch} from "./db"
 
 
 $(document).ready(function () {
 
   let length;
+  let searchList = []
   
   //! GET MOVIES
 const fetch = () => {
@@ -17,7 +19,7 @@ const fetch = () => {
     movies.forEach(({title, rating, id}) => {
       bucket.push(id)
       let html =
-          `<div class="card pink lighten-1 white-text movie"
+          `<div class="card pink lighten-4 white-text movie"
             style="margin: auto">
             <div class="card-body">
             <div class="card-title center">${title}</div>
@@ -106,9 +108,66 @@ fetch()
     })
   }
   
+  //! DATA BASE STUFF
+  let searchButton = $('#dbSubmit')
+  searchButton.click(function (e) {
+    console.log(`click`)
+    let searchTerm = $('#dbInput').val()
+    getSearch(searchTerm)
+        .then((movies)=> {
+          console.log(`MOVIES: `, movies)
+          let wrapper = $('#db-card-wrapper')
+          wrapper.html('')
+            let idBucket = []
+          //!loop terms
+          movies[0].known_for.forEach((m,i)=> {
+            searchList.push(m)
+            idBucket.push(m.id)
+            console.log("m: ", m)
+            let html =
+                `<div class="card search-card" >
+                    <div class="card-body">
+                    <div class="card-title">${m.title}
+                      <a class="waves-effect waves-light btn modal-trigger btn-small" href="#modal2" id="db-${m.id}"><i class="material-icons "
+                    data-target="modal2">playlist_add</i></a>
+                    </div>
+                    ${m.overview}
+                    <div class="card-action">
+                    ${m.release_date}
+                </div>
+                </div>
+                </div>`
+            wrapper.append(html)
+          })
+          addAddEvent(idBucket)
+        })
+        .catch(()=> console.log('GET DB ERROR'))
+  })
   
+  const addAddEvent = arr => {
+    console.log("search List: ", searchList)
+    arr.forEach((a,i)=> {
+      $(`#db-${a}`).click(function (e) {
+        searchList.forEach((s,i)=> {
+          console.log("S: ", s.title)
+          if(Number(s.id) === Number(a)){
+            $('#inputDB').val(s.title)
+            // $('submitDB').set('myval2', s.id)
+          }
+        })
+      })
+    })
+  }
   
-  
+  $('#submitDB').click(function () {
+    let movie = {
+      title: $('#inputDB').val(),
+      rating: $('#selectDB').val()
+    }
+    postMovie(movie)
+        .then(()=> fetch())
+        .catch(()=> console.log(`DB POST CATCH`))
+  })
   
 })
 
