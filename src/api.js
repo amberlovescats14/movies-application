@@ -55,5 +55,15 @@ import $ from 'jquery'
         return fetch(`api/movies/${id}`, options)
     }
     
+    export const deleteMovie = ( id) => {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        return fetch(`api/movies/${id}`, options)
+    }
+    
 
 

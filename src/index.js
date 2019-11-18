@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import sayHello from './hello';
 sayHello('World');
-import {getMovies, postMovie, editMovie} from "./api"
+import {getMovies, postMovie, editMovie, deleteMovie} from "./api"
 
 
 $(document).ready(function () {
@@ -12,8 +12,10 @@ $(document).ready(function () {
 const fetch = () => {
   getMovies().then((movies) => {
     length = movies.length
+    let bucket = []
     
     movies.forEach(({title, rating, id}) => {
+      bucket.push(id)
       let html =
           `<div class="card pink lighten-1 white-text">
             <div class="card-body">
@@ -23,15 +25,18 @@ const fetch = () => {
              <i class="material-icons">star_border</i>
              Rating >
             </p>
-
             <div class="card-action center" >
   <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="${id}">Edit</a>
+  <a class="btn-floating waves-effect waves-light red"
+  id="delete-${id}"><i class="material-icons">clear</i></a>
+  
             </div>
             </div>
             </div>`
       $('#card-wrapper').append(html)
     });
-    addClickEvent(length, movies)
+    addClickEvent(length, bucket, movies)
+    addDeleteEvent(length, bucket)
   }).catch((error) => {
     alert('Oh no! Something went wrong.Check the console for details.')
     console.log(error);
@@ -56,20 +61,19 @@ fetch()
   })
   
   //! EDIT BUTTONS 
-  const addClickEvent = (length, arr) => {
-    for (let i = 1; i < length+1; i++) {
-      console.log('ld')
-      $(`#${i}`).click(function (e) {
-        console.log("arr, ", arr)
-        arr.forEach((a,i)=> {
-           if(Number(e.target.id) === Number(a.id)) {
-             console.log("E: ", $('#updateTitle'))
-            $('#updateTitle').val(a.title)
-             $('#updateSubmit').data('myval', a.id)
-           }
-        })
+  const addClickEvent = (length, arr, movieArr) => {
+    arr.forEach((a,i)=> {
+    $(`#${a}`).click(function () {
+      movieArr.forEach((m,i)=> {
+        console.log(m.id)
+        if(Number(m.id) === Number(a)){
+          console.log("m.id: ", m.id)
+    $('#updateTitle').val(m.title)
+    $('#updateSubmit').data('myval', m.id)
+        }
       })
-    }
+    })
+    })
   }
 
   //z: handleUpdate
@@ -90,13 +94,24 @@ fetch()
   
   //! DELETE
   
-  
+  const addDeleteEvent = (length, arr) => {
+    arr.forEach((a,i)=> {
+      $(`#delete-${a}`).click(function (e) {
+        let id = a
+        deleteMovie(id)
+            .then(()=> fetch())
+            .catch(()=> console.log(`DELETE ERROR`))
+      })
+    })
+  }
   
   
   
   
   
 })
+
+
 
 
 
