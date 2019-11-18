@@ -4,6 +4,16 @@
       "id": 1,
       "title": "Walk the dog",
       "rating": "5"
+    },
+    {
+      "id": 2,
+      "title": "Common Divisor",
+      "rating": "3"
+    },
+    {
+      "id": 3,
+      "title": "The Little Mermaid",
+      "rating": "5"
     }
   ]
 }

@@ -1,3 +1,45 @@
+
+
 .change-display {
     display: none;
+}
+#before-loading {
+    height: 100vh;
+    width: 100vw;
+    background: url("./img/spots.png");
+}
+#loading-div {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://media3.giphy.com/media/3o7Zen3RCzrnhHnSkU/source.gif");
+    background-size: cover;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+}
+#heading {
+    color: #FFFFFF;
+    text-shadow: 4px 3px 0px #7A7A7A;
+}
+#card-wrapper {
+    background: #F8BBD0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+    overflow: auto;
+}
+.movie {
+    width: 100%;
+    height: 200px;
+    margin: 10px 0 !important;
+}
+@media screen and (min-width: 768px) {
+    .movie {
+        width: 60%;
+
+    }
 }

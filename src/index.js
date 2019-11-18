@@ -17,7 +17,8 @@ const fetch = () => {
     movies.forEach(({title, rating, id}) => {
       bucket.push(id)
       let html =
-          `<div class="card pink lighten-1 white-text">
+          `<div class="card pink lighten-1 white-text movie"
+            style="margin: auto">
             <div class="card-body">
             <div class="card-title center">${title}</div>
             <p class="center">

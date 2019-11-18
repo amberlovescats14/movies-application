@@ -11,18 +11,20 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
     <title>Movie Project</title>
 </head>
 <body>
 <div id="before-loading">
-    <img src="./img/loading.gif" alt="loading">
+    <div id="loading-div"></div>
+<!--    <img src="./img/loading.gif" alt="loading">-->
 </div>
 
-<div id="after-loading" >
-<h1>Amber's Movies</h1>
+<div id="after-loading" class="pink lighten-4">
+<h1 class="center pink lighten-4" id="heading">Amber's Movies</h1>
     <!--    POST FORM-->
-    <div class="row">
-        <form class="col s12">
+    <div class="row" id="form-container">
+        <form class="col s12 m6" style="margin: auto">
             <div class="row">
                 <div class="input-field col s12">
                     <input placeholder="e.g The Little Mermaid" id="title" type="text" class="validate" required>
@@ -44,7 +46,9 @@
         </form>
     </div>
     <!--    POST FORM-->
+
     <div id="card-wrapper"></div>
+
 <!--    update modal-->
     <div id="modal1" class="modal">
     <div class="modal-body">
